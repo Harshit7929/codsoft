@@ -1,0 +1,70 @@
+#include <iostream>
+
+class Calculator {
+private:
+    double num1;
+    double num2;
+    double result;
+    char operation;
+
+public:
+    Calculator() : num1(0), num2(0), result(0), operation('\0') {}
+
+    // Member function to get user input
+    void getUserInput() 
+    {
+        std::cout << "Enter the first number: ";
+        std::cin >> num1;
+
+        std::cout << "Enter the second number: ";
+        std::cin >> num2;
+
+        std::cout << "Choose an operation (+, -, *, /): ";
+        std::cin >> operation;
+    }
+
+    // Member function to perform the selected operation
+    void performOperation()
+    {
+        switch (operation)
+        {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 != 0) 
+                {
+                    result = num1 / num2;
+                } 
+                else 
+                {
+                    std::cout << "Error: Division by zero is not allowed." << std::endl;
+                    exit(1); // Exit with an error code
+                }
+                break;
+            default:
+                std::cout << "Error: Invalid operation." << std::endl;
+                exit(1); // Exit with an error code
+        }
+    }
+
+    // Member function to display the result
+    void displayResult() 
+    {
+        std::cout << "Result: " << result << std::endl;
+    }
+};
+
+int main() {
+    Calculator calculator;
+    calculator.getUserInput();
+    calculator.performOperation();
+    calculator.displayResult();
+    return 0;
+}
